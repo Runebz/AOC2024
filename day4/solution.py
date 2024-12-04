@@ -13,12 +13,14 @@ def checkVertical(line, vertOffset):
     for i in range(len(line)):
         if line[i] == "X":
             try:
-                if lines[vertOffset-1][i] == "M" and lines[vertOffset-2][i] == "A" and lines[vertOffset-3][i] == "S":
+                if lines[vertOffset-1][i] == "M" and lines[vertOffset-2][i] == "A" and lines[vertOffset-3][i] == "S" and vertOffset > 2:
+                    print(f"found vertical (up) match at {vertOffset} {i}")
                     vertCount += 1
             except IndexError:
                 pass
             try:
-                if lines[vertOffset+1][i] == "M" and lines[vertOffset+2][i] == "A" and lines[vertOffset+3][i] == "S": 
+                if lines[vertOffset+1][i] == "M" and lines[vertOffset+2][i] == "A" and lines[vertOffset+3][i] == "S" and vertOffset < (len(lines) -3): 
+                    print(f"found vertical (down) match at {vertOffset} {i}")
                     vertCount += 1
             except IndexError:
                 pass
@@ -29,22 +31,26 @@ def checkDiagonals(line, vertOffset):
     for i in range(len(line)):
         if line[i] == "X":
             try:
-                if lines[vertOffset-1][i-1] == "M" and lines[vertOffset-2][i-2] == "A" and lines[vertOffset-3][i-3] == "S":
+                if lines[vertOffset-1][i-1] == "M" and lines[vertOffset-2][i-2] == "A" and lines[vertOffset-3][i-3] == "S" and vertOffset > 2:
+                    print(f"found diagonal (-,-) match at {vertOffset} {i}")
                     diagCount += 1
             except IndexError:
                 pass
             try:
-                if lines[vertOffset+1][i-1] == "M" and lines[vertOffset+2][i-2] == "A" and lines[vertOffset+3][i-3] == "S": 
+                if lines[vertOffset+1][i-1] == "M" and lines[vertOffset+2][i-2] == "A" and lines[vertOffset+3][i-3] == "S" and vertOffset < (len(lines) -3): 
+                    print(f"found diagonal (+,-) match at {vertOffset} {i}")
                     diagCount += 1
             except IndexError:
                 pass
             try:
-                if lines[vertOffset-1][i+1] == "M" and lines[vertOffset-2][i+2] == "A" and lines[vertOffset-3][i+3] == "S":
+                if lines[vertOffset-1][i+1] == "M" and lines[vertOffset-2][i+2] == "A" and lines[vertOffset-3][i+3] == "S" and vertOffset > 2:
+                    print(f"found diagonal (-,+) match at {vertOffset} {i}")
                     diagCount += 1
             except IndexError:
                 pass
             try:
-                if lines[vertOffset+1][i+1] == "M" and lines[vertOffset+2][i+2] == "A" and lines[vertOffset+3][i+3] == "S": 
+                if lines[vertOffset+1][i+1] == "M" and lines[vertOffset+2][i+2] == "A" and lines[vertOffset+3][i+3] == "S" and vertOffset < (len(lines) -3): 
+                    print(f"found diagonal (+,+) match at {vertOffset} {i}")
                     diagCount += 1
             except IndexError:
                 pass
