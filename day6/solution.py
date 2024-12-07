@@ -25,6 +25,9 @@ def walk():
     global direction
     outOfBounds = False
     while not outOfBounds:
+        if pos[0] < 0 or pos[0] == len(lab) or pos[1] < 0 or pos[1] == len(lab[0]):
+            outOfBounds = True
+            continue
         if [pos[0], pos[1]] not in visited:
             visited.append([pos[0], pos[1]])
         match direction:
@@ -38,8 +41,6 @@ def walk():
                 pos[1] += 1
             case _:
                 print("guard has no direction")
-        if pos[0] < 0 or pos[0] == len(lab) or pos[1] < 0 or pos[1] == len(lab[0]):
-            outOfBounds = True
         turn() #turns the guard if needed
     
 def turn():
@@ -64,7 +65,8 @@ def turn():
 
 def solve():
     walk()
-    print(visited)
     print(len(visited))
+    file.close()
+    return visited
 
 solve()
