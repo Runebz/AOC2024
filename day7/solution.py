@@ -1,4 +1,3 @@
-import re
 import math
 file = open("day7/input.txt")
 
